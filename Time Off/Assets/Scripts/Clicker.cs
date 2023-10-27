@@ -1,18 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Clicker : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private int wasClicks;
+    public int needClicks;
+    public Text wasClicksTxt;
+    public Text needClickTxt;
 
-    // Update is called once per frame
-    void Update()
+
+    private void Update()
     {
-        
+        needClickTxt.text = "" + needClicks;
+        if(wasClicks > needClicks)
+        {
+            needClicks += 10;
+        }
+        if(needClicks < wasClicks)
+        {
+            SceneManager.LoadScene(0);
+        }
+    }
+    public void Clicking()
+    {
+        wasClicks += 1;
+        wasClicksTxt.text = "" + wasClicks;
     }
 }
